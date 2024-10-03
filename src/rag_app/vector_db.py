@@ -2,7 +2,7 @@ import os
 from langchain_community.embeddings import HuggingFaceEmbeddings
 import chromadb
 from langchain_chroma import Chroma
-
+import torch
 # these three lines swap the stdlib sqlite3 lib with the pysqlite3 package
 __import__('pysqlite3')
 import sys
@@ -10,8 +10,10 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 
 import chromadb
+
+device = torch.cuda.is_available()
 chroma_client = chromadb.PersistentClient(path="../data")
-embedding_function = HuggingFaceEmbeddings(model_name="intfloat/multilingual-e5-large-instruct",
+embedding_function = HuggingFaceEmbeddings(model_name="intfloat/multilingual-e5-large-instruct") if torch.cuda.is_available() else HuggingFaceEmbeddings(model_name="intfloat/multilingual-e5-large-instruct",
                                            model_kwargs={'device': 'cpu'},
                                            encode_kwargs={'normalize_embeddings': False})
 
