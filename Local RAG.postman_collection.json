@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "2584ab8f-26ef-437b-9332-246d41f90db7",
+		"name": "Local RAG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7425262"
+	},
+	"item": [
+		{
+			"name": "Check server health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://34.131.228.202:8000/health",
+					"protocol": "http",
+					"host": [
+						"34",
+						"131",
+						"228",
+						"202"
+					],
+					"port": "8000",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload file to the server",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/shubham.v/Documents/Handlungshilfe_CSRD.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://34.131.228.202:8000/upload",
+					"protocol": "http",
+					"host": [
+						"34",
+						"131",
+						"228",
+						"202"
+					],
+					"port": "8000",
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post query request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"query\": \"what is the full form of CSRD?\",\r\n\"stream\": false}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://34.131.228.202:8000/query",
+					"protocol": "http",
+					"host": [
+						"34",
+						"131",
+						"228",
+						"202"
+					],
+					"port": "8000",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
