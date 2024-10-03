@@ -3,18 +3,13 @@ import os
 import math
 from typing import Optional
 from pydantic import Field
-import streamlit as st
-from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_community.llms import Ollama
 from langchain_ollama.llms import OllamaLLM
-from fastapi import FastAPI, Query, File, UploadFile
 from flask import Flask, request
 from werkzeug.utils import secure_filename
 
 from load_data import load_split_pdf_file, load_split_html_file, initialize_splitter
-# from load_llm import load_lamma_cpp
 from vector_db import create_vector_db, load_local_db
 from prompts import create_prompt
 from utils import read_file
@@ -22,7 +17,6 @@ from utils import read_file
 #     HumanMessage,
 #     SystemMessage,
 # )
-st.set_page_config(page_title="Chatbot")
 
 
 
