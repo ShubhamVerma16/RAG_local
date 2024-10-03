@@ -112,11 +112,16 @@ def query(collection_name : Optional[str] = "test_collection"):
     # llm = OpenAI()
     chain = prompt | llm | StrOutputParser()
 
-
-    return chain.invoke({
-    "context": context,
-    "query": query
-    })
+    if data["stream"]:
+        return chain.stream({
+                        "context": context,
+                        "query": query
+                        })
+    else:
+        return chain.invoke({
+                        "context": context,
+                        "query": query
+                        })
 
 
 
